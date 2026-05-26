@@ -1,3 +1,15 @@
+const ACCESS_PASSWORD = "836262"; // Твой пароль (поменяй на свой)
+
+function checkAccess() {
+    const entered = prompt("Введи пароль доступа:");
+    if (entered !== ACCESS_PASSWORD) {
+        alert("Доступ запрещен!");
+        document.body.innerHTML = "<h1>ACCESS_DENIED</h1>";
+    }
+}
+
+// Вызываем проверку ПЕРЕД тем, как рисовать страницы
+checkAccess();
 const pages = {
     home: `<h1>SYSTEM_DASHBOARD</h1><div class="card"><h3>Market Status</h3><div id="crypto-widget">Loading...</div></div>`,
     gen: `<h1>Генератор</h1><div class="card"><input id="pass" readonly><button onclick="gen()">GENERATE</button></div>`,
