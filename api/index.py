@@ -4,7 +4,7 @@ from http.server import BaseHTTPRequestHandler
 from aiogram import Bot, Dispatcher, types
 
 # Токен берем из переменных окружения Vercel
-TOKEN = os.getenv("8996683758:AAFuH4sCLISk6lqEBDjN72b6tIOW0mcZeaE")
+TOKEN = os.getenv("BOT_TOKEN")
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
