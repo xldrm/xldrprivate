@@ -2,31 +2,21 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matrix Dashboard</title>
     <link rel="stylesheet" href="style.css">
+    <title>Matrix Hub</title>
 </head>
 <body>
-    <header>
-        <h1>SYSTEM_DASHBOARD</h1>
-    </header>
-    <main class="grid-container">
-        <div class="card">
-            <h3>Monitoring</h3>
-            <p>System status: ONLINE</p>
+    <nav>
+        <button id="menu-btn">≡ MENU</button>
+        <div id="menu-content" class="hidden">
+            <a href="#" onclick="showPage('home')">Главная</a>
+            <a href="#" onclick="showPage('gen')">Генератор</a>
         </div>
-        <div class="card">
-            <h3>Quick Links</h3>
-            <a href="#">GitHub</a> | <a href="#">Vercel</a>
+    </nav>
+
+    <div id="app">
         </div>
-<div class="card">
-    <h3>Password Generator</h3>
-    <div class="password-box">
-        <input type="text" id="password" readonly placeholder="Нажми кнопку...">
-        <button onclick="generatePassword()">GENERATE</button>
-    </div>
-</div>
-    </main>
-<script src="script.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>
