@@ -1,9 +1,33 @@
+async function getCryptoPrice() {
+    try {
+        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether&vs_currencies=usd');
+        const data = await response.json();
+        return `
+            <div style="color:var(--matrix-green); font-size: 1.2rem; margin-top: 10px;">
+                BTC: $${data.bitcoin.usd.toLocaleString()}<br>
+                ETH: $${data.ethereum.usd.toLocaleString()}<br>
+                USDT: $${data.tether.usd.toLocaleString()}
+            </div>
+        `;
+    } catch (e) {
+        return "Ошибка загрузки курсов";
+    }
+}
 const pages = {
     home: `<h1>SYSTEM_DASHBOARD</h1><div class="card">ХАБ ГОТОВ К РАБОТЕ</div>`,
     gen: `<h1>Генератор</h1><div class="card"><input id="pass" readonly><button onclick="gen()">GENERATE</button></div>`,
     notes: `<h1>Заметки</h1><div class="card"><textarea id="noteInput" oninput="saveNote()" placeholder="Пиши сюда..."></textarea></div>`,
+    home: `<h1>SYSTEM_DASHBOARD</h1> <div class="card"><h3>Market Status</h3><div id="crypto-widget">Loading...</div></div>`,
     bookmarks: `<h1>Закладки</h1><div class="card"><input type="text" id="urlInput" placeholder="https://..."><button onclick="addBookmark()">ДОБАВИТЬ</button><div id="bookmarkList"></div></div>`
 };
+
+async function showPage(page) {
+    const app = document.getElementById('app');
+    app.innerHTML = pages[page] || pages.home;
+    
+    if (page === 'home') {
+        document.getElementById('crypto-widget').innerHTML = await getCryptoPrice();
+    }
 
 function gen() {
     const chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()";
