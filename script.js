@@ -39,6 +39,26 @@ function showPage(page) {
     document.getElementById('menu-content').classList.add('hidden');
 }
 
+function deleteBookmark(index) {
+    let list = JSON.parse(localStorage.getItem('myBookmarks') || '[]');
+    list.splice(index, 1); // Удаляет один элемент по индексу
+    localStorage.setItem('myBookmarks', JSON.stringify(list));
+    renderBookmarks();
+}
+
+function renderBookmarks() {
+    const list = JSON.parse(localStorage.getItem('myBookmarks') || '[]');
+    const container = document.getElementById('bookmarkList');
+    if (!container) return;
+    
+    container.innerHTML = list.map((url, index) => `
+        <div style="display:flex; justify-content:space-between; margin: 10px 0; align-items:center;">
+            <a href="${url}" target="_blank" style="color:var(--matrix-green); text-decoration:none;">${url.substring(0, 30)}...</a>
+            <button onclick="deleteBookmark(${index})" style="padding: 5px 10px; font-size: 1rem; background:#ff5252; color:#fff; border:none; border-radius:4px;">X</button>
+        </div>
+    `).join('');
+}
+
 document.getElementById('menu-btn').onclick = () => document.getElementById('menu-content').classList.toggle('hidden');
 
 showPage('home');
