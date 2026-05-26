@@ -70,7 +70,11 @@ async function showPage(page) {
     const app = document.getElementById('app');
     app.innerHTML = pages[page] || pages.home;
     
-    if (page === 'home') document.getElementById('crypto-widget').innerHTML = await getCryptoPrice();
+    if (page === 'home') {
+    const crypto = await getCryptoPrice();
+    const ipInfo = await getIpInfo();
+    document.getElementById('crypto-widget').innerHTML = crypto + '<br><hr style="border-color:var(--matrix-green)">' + ipInfo;
+}
     if (page === 'notes') document.getElementById('noteInput').value = localStorage.getItem('myNotes') || '';
     if (page === 'bookmarks') renderBookmarks();
     
@@ -80,3 +84,19 @@ async function showPage(page) {
 document.getElementById('menu-btn').onclick = () => document.getElementById('menu-content').classList.toggle('hidden');
 
 showPage('home');
+
+async function getIpInfo() {
+    try {
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        return `
+            <div style="font-size: 1rem; margin-top: 10px; color: var(--matrix-green);">
+                IP: ${data.ip}<br>
+                ISP: ${data.org}<br>
+                Loc: ${data.city}, ${data.country_name}
+            </div>
+        `;
+    } catch (e) {
+        return "Ошибка определения IP";
+    }
+}
