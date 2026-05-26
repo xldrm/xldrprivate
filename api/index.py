@@ -1,6 +1,6 @@
-import asyncio
-from aiogram import Bot, Dispatcher, types
 import os
+import json
+from aiogram import Bot, Dispatcher, types
 
 TOKEN = os.getenv("BOT_TOKEN")
 bot = Bot(token=TOKEN)
@@ -11,7 +11,10 @@ async def echo_handler(message: types.Message):
     await message.answer(f"Я тебя слышу! (Vercel)")
 
 async def handler(request):
-    data = await request.json()
-    update = types.Update.model_validate(data)
+    # Этот принт ОБЯЗАН появиться в логах, если запрос пришел
+    print("Получен запрос от Telegram!") 
+    
+    body = await request.json()
+    update = types.Update.model_validate(body)
     await dp.feed_update(bot, update)
     return {"statusCode": 200, "body": "OK"}
