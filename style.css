@@ -1,3 +1,23 @@
+html {
+    font-size: 16px; /* Базовый размер */
+}
+
+body {
+    font-size: 1.1rem; /* Чуть крупнее текста */
+    padding: 10px;
+}
+
+/* Увеличиваем все кликабельные элементы для удобного нажатия пальцем */
+button, a {
+    min-height: 48px; /* Стандарт Google для мобильных кнопок */
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+}
+
+h1 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
 :root {
     --matrix-green: #00FF41;
     --bg-dark: #121212;
