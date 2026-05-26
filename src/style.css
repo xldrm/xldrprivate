@@ -31,3 +31,14 @@ h1 { color: var(--matrix-green); text-align: center; }
 }
 
 .card:hover { transform: scale(1.02); }
+
+.password-box { display: flex; gap: 10px; margin-top: 10px; }
+input { 
+    background: #000; border: 1px solid var(--matrix-green); 
+    color: var(--matrix-green); padding: 8px; border-radius: 8px; flex-grow: 1;
+}
+button { 
+    background: var(--matrix-green); color: #000; border: none; 
+    padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: bold;
+}
+button:hover { opacity: 0.8; }
