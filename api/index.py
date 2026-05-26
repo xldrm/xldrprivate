@@ -1,3 +1,4 @@
+import asyncio
 from aiogram import Bot, Dispatcher, types
 import os
 
@@ -5,13 +6,12 @@ TOKEN = os.getenv("BOT_TOKEN")
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
-# Vercel требует, чтобы это был асинхронный обработчик
+@dp.message()
+async def echo_handler(message: types.Message):
+    await message.answer(f"Я тебя слышу! (Vercel)")
+
 async def handler(request):
-    # Логика обработки входящего JSON от Telegram
-    body = await request.json()
-    update = types.Update.model_validate(body)
-    
-    # Твой код обработки
+    data = await request.json()
+    update = types.Update.model_validate(data)
     await dp.feed_update(bot, update)
-    
     return {"statusCode": 200, "body": "OK"}
