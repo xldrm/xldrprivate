@@ -4,20 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Matrix Hub</title>
+    <title>X-Hub Access</title>
 </head>
 <body>
-    <nav>
-        <button id="menu-btn">≡ MENU</button>
+
+    <div id="login-screen" class="container">
+        <h1>X-HUB</h1>
+        <p>MULTI-DATABASE ACCESS</p>
+        <input type="password" id="session-key" placeholder="ENTER SESSION KEY">
+        <button onclick="checkKey()">ВХОД В СИСТЕМУ</button>
+    </div>
+
+    <div id="main-app" class="hidden">
+        <nav><button id="menu-btn">≡ MENU</button></nav>
         <div id="menu-content" class="hidden">
             <a href="#" onclick="showPage('home')">Главная</a>
             <a href="#" onclick="showPage('gen')">Генератор</a>
             <a href="#" onclick="showPage('notes')">Заметки</a>
             <a href="#" onclick="showPage('bookmarks')">Закладки</a>
         </div>
-    </nav>
-
-    <div id="app"></div>
+        <div id="app"></div>
+    </div>
 
     <script src="script.js"></script>
 </body>

@@ -1,15 +1,17 @@
-const ACCESS_PASSWORD = "836262"; // Твой пароль (поменяй на свой)
+const SECRET_KEY = "836262";
 
-function checkAccess() {
-    const entered = prompt("Введи пароль доступа:");
-    if (entered !== ACCESS_PASSWORD) {
-        alert("Доступ запрещен!");
-        document.body.innerHTML = "<h1>ACCESS_DENIED</h1>";
+function checkKey() {
+    const key = document.getElementById('session-key').value;
+    if (key === SECRET_KEY) {
+        document.getElementById('login-screen').classList.add('hidden');
+        document.getElementById('main-app').classList.remove('hidden');
+        showPage('home');
+    } else {
+        alert("ACCESS DENIED");
     }
 }
 
-// Вызываем проверку ПЕРЕД тем, как рисовать страницы
-checkAccess();
+// ... остальной код showPage, gen, saveNote и т.д. ...
 const pages = {
     home: `<h1>SYSTEM_DASHBOARD</h1><div class="card"><h3>Market Status</h3><div id="crypto-widget">Loading...</div></div>`,
     gen: `<h1>Генератор</h1><div class="card"><input id="pass" readonly><button onclick="gen()">GENERATE</button></div>`,

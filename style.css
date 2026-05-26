@@ -1,3 +1,14 @@
+.container { 
+    display: flex; flex-direction: column; align-items: center; 
+    justify-content: center; height: 100vh; gap: 20px; 
+}
+.hidden { display: none !important; }
+h1 { color: var(--matrix-green); font-size: 3rem; }
+input { 
+    background: #111; border: 1px solid var(--matrix-green); 
+    color: #fff; padding: 15px; width: 80%; max-width: 300px;
+}
+button { background: var(--matrix-green); color: #000; border: none; padding: 15px 30px; cursor: pointer; }
 html {
     font-size: 16px; /* Базовый размер */
 }
